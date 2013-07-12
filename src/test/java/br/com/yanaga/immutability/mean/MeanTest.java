@@ -16,11 +16,12 @@ public class MeanTest {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Test
-	public void testMeanWith1_000_000() {
+	public void testMean() {
 		Profiler profiler = new Profiler("Mean Test");
 		profiler.setLogger(logger);
+		profiler.start("RANDOM");
+		List<Integer> integers = DataGenerator.generateIntegersWithForkJoin(10_000_000);
 		profiler.start("Single Thread Mean");
-		List<Integer> integers = DataGenerator.generateIntegers(1_000_000);
 		float mean1 = new SingleThreadMean().mean(integers);
 		profiler.start("Fork Join Mean");
 		float mean2 = new ForkJoinMean().mean(integers);

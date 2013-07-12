@@ -17,7 +17,7 @@ public class ForkJoinMean implements Mean {
 
 		private static final long serialVersionUID = 1L;
 
-		private static final int FORK_JOIN_MINIMUM_SIZE = 50;
+		private static final int FORK_JOIN_MINIMUM_SIZE = 5000;
 
 		private final List<Integer> numbers;
 
@@ -53,7 +53,7 @@ public class ForkJoinMean implements Mean {
 		}
 
 		private boolean isForkNeeded() {
-			return numbers.size() < FORK_JOIN_MINIMUM_SIZE;
+			return numbers.size() > FORK_JOIN_MINIMUM_SIZE;
 		}
 
 	}
